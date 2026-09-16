@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 3. **Запуск приложения:**
 ```bash
-python app.py
+python main.py
 ```
 
 Откройте `http://localhost:5000` в браузере.
