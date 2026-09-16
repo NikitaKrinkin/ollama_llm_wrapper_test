@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-container" id="chatContainer" data-prompt-set="{{ 'true' if prompt_set else 'false' }}">
+        <div class="chat-header">
+            <h2>LLM Chat (llama3.2:1b)</h2>
+            <button class="btn-clear" onclick="clearChat()">Новый диалог</button>
+        </div>
+        <div class="chat-messages" id="messages">
+            {% for msg in history %}
+                <div class="message {{ msg.role }}">{{ msg.content }}</div>
+            {% endfor %}
+        </div>
+        <div class="chat-input">
+            <input type="text" id="userInput" onkeydown="if(event.key==='Enter') submitInput()">
+            <button id="defaultBtn" class="btn-secondary" onclick="sendPrompt(true)" style="display: none;">По умолчанию</button>
+            <button id="sendBtn" class="btn-primary" onclick="submitInput()">Отправить</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
